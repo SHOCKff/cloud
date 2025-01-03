@@ -9,7 +9,14 @@ const port    = 9000;
 
 const app    = express();
 const server = http.createServer(app);
-const io     = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*", // Allow all origins for testing. Restrict this in production.
+    methods: ["GET", "POST"],
+  },
+});
+
+
 
 //socket io handleling
 io.on('connection', (socket) => { 
